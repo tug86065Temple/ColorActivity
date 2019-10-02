@@ -1,9 +1,13 @@
 package edu.temple.coloractivity;
 
-import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,20 +18,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Spinner spinner = findViewById(R.id.spinner);
-        ListView listView = findViewById(R.id.listView);
+        final Spinner spinner = findViewById(R.id.spinner);
+        final ListView listView = findViewById(R.id.listView);
 
 
-        String colors[] = {"RED", "LTGRAY", "YELLOW", "GREEN", "BLUE",
-                "CYAN", "MAGENTA", "PINK", "GRAY", "BLACK"};
+        final String colors[] = {"RED", "DARKGRAY", "YELLOW", "GREEN", "BLUE",
+                "CYAN", "MAGENTA", "LIGHTGRAY", "GRAY", "BLACK"};
 
-        ColorAdapter adapter = new ColorAdapter(MainActivity.this, colors);
+        final ColorAdapter adapter = new ColorAdapter(MainActivity.this, colors);
 
         spinner.setAdapter(adapter);
         listView.setAdapter(adapter);
 
-        /*spinner.setOnItemSelectedListener();
-        listView.setOnItemClickListener();
-*/
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listView.setBackgroundColor(Color.parseColor(colors[position]));
+            }
+        });
+
     }
 }
