@@ -2,7 +2,6 @@ package edu.temple.coloractivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         final ColorAdapter adapter = new ColorAdapter(MainActivity.this, colors);
 
         spinner.setAdapter(adapter);
-        listView.setAdapter(adapter);
+
 
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listView.setBackgroundColor(Color.parseColor(colors[position]));
